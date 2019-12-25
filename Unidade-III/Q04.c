@@ -9,7 +9,7 @@ typedef struct node
   struct node *pProx;
 } node;
 
-void inserir(node **head, int value)
+void inserir(node **head, int value) // lista
 {
   node *new_node = calloc(1, sizeof(node));
   new_node->value = value;
