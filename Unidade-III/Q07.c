@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 #define SIZE_ARRAY 5
 
 typedef struct
@@ -40,7 +39,7 @@ void insertSort(tPessoa *pessoas, int tam)
     while ((j >= 0) && (eleito.id < pessoas[j].id))
     {
       pessoas[j + 1] = pessoas[j];
-      j = j - 1;
+      j -= 1;
     }
     pessoas[j + 1] = eleito;
   }
