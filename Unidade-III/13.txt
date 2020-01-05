@@ -1,0 +1,25 @@
+Primeiramente, vamos falar sobre a busca linear. A busca linear tem como caracteristica principal a procura 
+de um item de uma forma linear("um por vez"). Se temos uma coleção, a procura irá iniciar do indice inicial até 
+encontrar o item desejado. O algoritmo é bastante simples, porém pouco eficiento, visto que procura pode demorar
+muito se tivermos inúmeros dados em nossa coleção. A complexidade desse algoritmo é O(n).
+
+A pesquisa binária basea-se em eliminar um espaço de busca tendo em visto que um dos pre-requisitos é a coleção
+está ordenada. É encontrado o elemento do meio e com base na chave comparamos se a mesma é maior ou menor do que 
+o elemento do meio. Tendo isso, fazemos a busca no lado direito ou esquerdo da coleçao. Complexidade: O(log n).
+
+
+Árvore binaria de busca, basea-se em um estrura em árvore. Todos os elementos são organzados dinamicamente conforme
+os nós da árvore. Tomamos um nó-raiz, e com base nele vamos organizar, todos os elementos menores do que o nó-raiz
+ficam em nós(folhas) a esquerda e os maiores ficam em nós da direita. 
+
+
+Tabela de dispersão, 
+
+
+// Metodos de Ordenação
+
+- Select Sort: A ordenação é feita selecionando o elemento com base em sua posição e só assim inserir corretamente no lugar.
+
+- Insert Sort: A ordenação é feita com base no valor e assim inserir corretamente.
+
+- Bubble Sort: A ordenação é feita permutando os elementos vizinhos.
