@@ -42,7 +42,7 @@ int binarySearch(tPessoa *pessoas, int tam, int id)
 {
   int inicio = 0;
   int fim = tam - 1;
-  int result = -1; // result of search array if will not find element  (default)
+  int result = -1;
 
   while (inicio <= fim)
   {
@@ -60,7 +60,7 @@ int binarySearch(tPessoa *pessoas, int tam, int id)
       }
       else
       {
-        inicio = tam; // stop search on the array
+        inicio = tam;
         result = meio;
       }
     }

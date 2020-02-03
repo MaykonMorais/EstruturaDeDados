@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct
 {
@@ -7,68 +8,56 @@ typedef struct
   char nome[20];
 } tPessoa;
 
-int linearSearch(tPessoa *pessoas, int id, int tam);
+struct Node
+{
+  tPessoa pessoa;
+  struct Node *next;
+};
+
+void adicionar(struct Node **cabeca, tPessoa pessoa);
+linearSearch(struct Node *cabeca, int id);
 void showPeoples(tPessoa pessoas[], int tam);
 
 int main()
 {
-  int tam;
-  printf("Digite a quantidade de pessoas que deseja adicionar: ");
-  scanf("%d", &tam);
+  struct Node *head = NULL;
+  tPessoa pessoa;
 
-  tPessoa *pessoas = (tPessoa *)calloc(tam, sizeof(tPessoa));
+  pessoa.id = 1;
+  strcpy(pessoa.nome, "Maria");
+  adicionar(&head, pessoa);
 
-  int i = 0;
+  pessoa.id = 8;
+  strcpy(pessoa.nome, "Maria");
+  adicionar(&head, pessoa);
 
-  while (i < tam)
-  {
-    pessoas[i].id = i;
-    printf("Digite %d o nome: ", i + 1);
-    scanf("%s", pessoas[i].nome);
+  pessoa.id = 2;
+  strcpy(pessoa.nome, "Maria");
+  adicionar(&head, pessoa);
 
-    i++;
-  }
-
-  showPeoples(pessoas, tam);
-  int id;
-  printf("\nDigite o ID desejado: ");
-  scanf("%d", &id);
-
-  int result = linearSearch(pessoas, id, tam);
-
-  printf("result: %d\n", result);
-  if (result != -1)
-  {
-    printf("\nPessoa encontrada: \nID: %d\nNome: %s\n", pessoas[result].id, pessoas[result].nome);
-  }
-  else
-  {
-    printf("Elemento nao encontrado!!\n");
-  }
-
+  linearSearch(head, 9) ? printf("SIM") : printf("NAO");
   return 0;
 }
-
-int linearSearch(tPessoa *pessoas, int id, int tam)
+void adicionar(struct Node **cabeca, tPessoa pessoa)
 {
-  int result = -1;
-  int i = 0;
-  for (i; i < tam; i++)
-  {
-    if (id == pessoas[i].id)
-    {
-      return i; // return position
-    }
-  }
-  return result;
+  struct Node *new_node = (struct Node *)malloc(sizeof(struct Node));
+
+  new_node->pessoa = pessoa;
+
+  new_node->next = (*cabeca);
+
+  (*cabeca) = new_node;
 }
-
-void showPeoples(tPessoa pessoas[], int tam)
+linearSearch(struct Node *cabeca, int id)
 {
-  int i = 0;
-  printf("\nPessoas Cadastradas: \n");
-  for (i; i < tam; i++)
+  struct Node *noAtual = cabeca;
+  while (noAtual != NULL)
   {
-    printf("ID: %d\nNome: %s\n", pessoas[i].id, pessoas[i].nome);
+    if (noAtual->pessoa.id == id)
+    {
+      return 1;
+    }
+    noAtual = noAtual->next;
   }
+  return 0;
 }

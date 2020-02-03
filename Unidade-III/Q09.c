@@ -37,21 +37,21 @@ void quickSort(tPessoa *pessoas, int initArray, int endArray)
   int i = initArray;
   int j = endArray;
 
-  tPessoa pivo = pessoas[(initArray + endArray) / 2]; //  middle array (pivot)
+  tPessoa pivo = pessoas[(initArray + endArray) / 2];
 
   while (i < j)
   {
     while (pessoas[i].id < pivo.id)
-    { // increase the init variable
+    {
       i += 1;
     }
     while (pessoas[j].id > pivo.id)
-    { // decrease the end variable
+    {
       j -= 1;
     }
 
     if (i <= j)
-    { // swap
+    {
       tPessoa aux = pessoas[i];
       pessoas[i] = pessoas[j];
       pessoas[j] = aux;
@@ -59,15 +59,15 @@ void quickSort(tPessoa *pessoas, int initArray, int endArray)
       i += 1;
       j -= 1;
     }
-  }
 
-  if (j > initArray)
-  {
-    quickSort(pessoas, initArray, j);
-  }
-  if (i < endArray)
-  {
-    quickSort(pessoas, i, endArray);
+    if (j > initArray)
+    {
+      quickSort(pessoas, initArray, j);
+    }
+    if (i < endArray)
+    {
+      quickSort(pessoas, i, endArray);
+    }
   }
 }
 

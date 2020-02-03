@@ -31,12 +31,12 @@ int main()
 void insertSort(tPessoa *pessoas, int tam)
 {
   int i;
-  for (i = 1; i <= tam - 1; i++)
+  for (int i = 1; i <= tam - 1; i++)
   {
     tPessoa eleito = pessoas[i];
     int j = i - 1;
 
-    while ((j >= 0) && (eleito.id < pessoas[j].id))
+    while ((j >= 0) && (eleito.id) < pessoas[j].id)
     {
       pessoas[j + 1] = pessoas[j];
       j -= 1;

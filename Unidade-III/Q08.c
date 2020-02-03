@@ -37,7 +37,7 @@ void selectSort(tPessoa *pessoas, int tam)
   {
     int menor = i;
     int j;
-    for (j = i + 1; j <= tam - 1; j++) // setando qual o menor numero
+    for (j = i + 1; j <= tam - 1; j++)
     {
       if (pessoas[j].id < pessoas[menor].id)
       {
@@ -45,7 +45,7 @@ void selectSort(tPessoa *pessoas, int tam)
       }
     }
 
-    if (i != menor) // trocando de lugar com o indice atual
+    if (i != menor)
     {
       tPessoa temp = pessoas[i];
       pessoas[i] = pessoas[menor];

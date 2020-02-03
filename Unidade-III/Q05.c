@@ -2,91 +2,84 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define HASHTABLE_SIZE 5
+#define SIZE 5
 
 typedef struct
 {
   int id;
-  char nome[30];
+  char nome[10];
 } tPessoa;
 
-void insertTableHash(tPessoa pessoas[], tPessoa dado);
-int calculateHash(int id);
+int calculateHash(int key);
+void inserir(tPessoa *tableHash, tPessoa pessoa);
 void showHashTable(tPessoa *pessoas);
 
 int main()
 {
-  tPessoa *hashTable = (tPessoa *)calloc(HASHTABLE_SIZE, sizeof(tPessoa));
+  tPessoa *hashTable = (tPessoa *)calloc(SIZE, sizeof(tPessoa));
 
   tPessoa pessoa;
 
-  pessoa.id = 293;
-
-  strcpy(pessoa.nome, "Mateus");
-  insertTableHash(hashTable, pessoa);
-
-  pessoa.id = 13;
-  strcpy(pessoa.nome, "Joao");
-  insertTableHash(hashTable, pessoa);
-
-  pessoa.id = 13;
+  pessoa.id = 8;
   strcpy(pessoa.nome, "Maria");
-  insertTableHash(hashTable, pessoa);
+  inserir(hashTable, pessoa);
 
-  pessoa.id = 28;
-  strcpy(pessoa.nome, "Pedro");
-  insertTableHash(hashTable, pessoa);
+  pessoa.id = 1;
+  strcpy(pessoa.nome, "Denilson");
+  inserir(hashTable, pessoa);
 
-  pessoa.id = 28;
-  strcpy(pessoa.nome, "Lucas");
-  insertTableHash(hashTable, pessoa);
+  pessoa.id = 3;
+  strcpy(pessoa.nome, "Mateus");
+  inserir(hashTable, pessoa);
 
-  pessoa.id = 28;
-  strcpy(pessoa.nome, "Maria Luiza");
-  insertTableHash(hashTable, pessoa);
+  pessoa.id = 5;
+  strcpy(pessoa.nome, "Joao");
+  inserir(hashTable, pessoa);
+
+  pessoa.id = 6;
+  strcpy(pessoa.nome, "Ricardo");
+  inserir(hashTable, pessoa);
 
   showHashTable(hashTable);
-
   return 0;
 }
-
-void insertTableHash(tPessoa *hashTable, tPessoa dado)
+int calculateHash(int key)
 {
-  int tam = strlen(dado.nome);
-  int pos = calculateHash(tam);
-
-  if (hashTable[pos].id != 0) // insere caso o espaco esteja preenchido
-  {
-    int i;
-    for (i = 0; i < HASHTABLE_SIZE; i++)
-    {
-      if (hashTable[i].id == 0)
-      {
-        printf("Inseriu...\n");
-        hashTable[i] = dado;
-        break;
-      }
-    }
-  }
-  else // insere caso a posicao seja vazia
-  {
-    hashTable[pos] = dado;
-    printf("Inseriu no segundo caso\n%s\n\n", hashTable[pos].nome);
-  }
+  return key % SIZE;
 }
 
-// primeiro calculo, desconsidera colisão
-int calculateHash(int id)
+void inserir(tPessoa *tableHash, tPessoa pessoa)
 {
-  return id % HASHTABLE_SIZE;
+  int pos = calculateHash(pessoa.id);
+
+  if (tableHash[pos].id != 0)
+  { // há um item
+    int i;
+    for (i = 0; i < SIZE; i++)
+    {
+      if (tableHash[i].id == 0)
+      {
+        printf("Inserindo em outra posicao vazia...\n");
+        tableHash[i] = pessoa;
+        return;
+      }
+    }
+    printf("A lista está cheia!!\n");
+  }
+  else
+  {
+    printf("Inserindo de primeira! \n");
+    tableHash[pos] = pessoa;
+    return;
+  }
 }
 
 void showHashTable(tPessoa *pessoas)
 {
   int i;
-  printf("Mostrando Tabela\n");
-  for (i = 0; i < HASHTABLE_SIZE; i++)
+  printf("Mostrando HashTable: \n");
+  for (i = 0; i < SIZE; i++)
   {
-    printf("%d : ID -%d\tNome- %s\n", i, pessoas[i].id, pessoas[i].nome);
+    printf("%d ID: %d\t Nome: %s\n", i, pessoas[i].id, pessoas[i].nome);
   }
 }
