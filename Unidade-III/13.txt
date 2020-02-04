@@ -13,13 +13,23 @@ os nós da árvore. Tomamos um nó-raiz, e com base nele vamos organizar, todos 
 ficam em nós(folhas) a esquerda e os maiores ficam em nós da direita. 
 
 
-Tabela de dispersão, 
+Tabela de dispersão, usado muito em contextos de SGBD'S. Utiliza-se de uma função de dispersão que associa a chave a 
+                    Posição da tabela hash dada pela função de transformação (função de dispersão)
 
 
 // Metodos de Ordenação
 
 - Select Sort: A ordenação é feita selecionando o elemento com base em sua posição e só assim inserir corretamente no lugar.
+Dada  a complexidade O(n²) podemos perceber que em todos os casos o processamento é ruim.
 
 - Insert Sort: A ordenação é feita com base no valor e assim inserir corretamente.
+  Ordenação segue igual caracteristica ao Select Sort em relação a complexidade, porém comportamento diferente quando a estrutura já esta ordenada.
 
 - Bubble Sort: A ordenação é feita permutando os elementos vizinhos.
+  A utilização do bubble pode ser relativamente boa, porém com uma carga de entrada muito grande, temos uns dos piores desempenhos.
+
+- heap Sort: Método de ordenação tomando a classificação baseada em comparação, com base em uma estruturação feita em arvore binaria.
+              Cada nó aqui represeta uma ordenação baseada em seus elementos posteriores e anteriores.
+  
+- Shell Sort: Método semelhante ao Insert sort, porém com algumas modificações básicas, principalmente pelo fato em que há um cálculo do h(espacamento) a cada iteração
+              Tal estratégia se mostra muito eficiente, mesmo quando temos um grande volume de dados.
